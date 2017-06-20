@@ -1,17 +1,16 @@
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
+import moment from 'moment';
 
 @Component({
   selector: 'page-home',
   templateUrl: 'home.html'
 })
 export class HomePage {
-  
-  dateFormatOptions = {
-  	month: 'long', day: 'numeric', year: 'numeric'
-  };
 
-  date = new Date().toLocaleDateString('en-US', this.dateFormatOptions);
+  currentDate = moment().format('MMMM Do, YYYY');
+  currentTime = moment().format('hh:mm');
+  timeInThirty = moment().add(7, 'hour').format('hh:mm');
 
   constructor(public navCtrl: NavController) {
 
