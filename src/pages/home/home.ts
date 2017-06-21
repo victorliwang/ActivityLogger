@@ -8,12 +8,22 @@ import moment from 'moment';
 })
 export class HomePage {
 
-  currentDate = moment().format('MMMM Do, YYYY');
-  currentTime = moment().format('hh:mm');
-  timeInThirty = moment().add(7, 'hour').format('hh:mm');
+  now = moment();
+  currentDate = this.now.format('MMMM Do, YYYY');
+  currentTime = this.now.format('HH:mm');
+  nearest15min = this.nearestMinutes(15, this.now);
+  inFutureHours = this.nearestMinutes(15, this.now.add(7, 'hour'));
+  
+  formattedFuture = this.inFutureHours.format('HH:mm');
+  formatted15 = this.nearest15min.format('HH:mm');
 
   constructor(public navCtrl: NavController) {
 
+  }
+
+  nearestMinutes(interval, someMoment){
+  	const roundedMinutes = Math.round(someMoment.clone().minute() / interval) * interval;
+  	return someMoment.clone().minute(roundedMinutes).second(0);
   }
 
 }
