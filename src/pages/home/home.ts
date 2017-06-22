@@ -8,22 +8,27 @@ import moment from 'moment';
 })
 export class HomePage {
 
-  now = moment();
-  currentDate = this.now.format('MMMM Do, YYYY');
-  currentTime = this.now.format('HH:mm');
-  nearest15min = this.nearestMinutes(15, this.now);
-  inFutureHours = this.nearestMinutes(15, this.now.add(7, 'hour'));
-  
-  formattedFuture = this.inFutureHours.format('HH:mm');
-  formatted15 = this.nearest15min.format('HH:mm');
+  now15 = this.nearest15Minutes().format('HH:mm');
+  currentDate = moment().format('MMMM Do, YYYY');
+  currentTime = moment().format('HH:mm');
+  in7Hours = this.inXHours(7);
+  in9Hours = this.inXHours(8);
+  in15Hours = this.inXHours(15, false);
+  inHalfHour = this.inXHours(.5);
 
   constructor(public navCtrl: NavController) {
 
   }
 
-  nearestMinutes(interval, someMoment){
-  	const roundedMinutes = Math.round(someMoment.clone().minute() / interval) * interval;
-  	return someMoment.clone().minute(roundedMinutes).second(0);
+  nearest15Minutes(){
+    return moment().add("minutes", 15 - moment().minute() % 15);
+  }
+
+  inXHours(hours: number, fifteen = true) {
+    if(fifteen) {
+      return this.nearest15Minutes().add(hours, 'hour').format('HH:mm');
+    }
+    return moment().add(hours, 'hour').format('HH:mm');
   }
 
 }
