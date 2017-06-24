@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController } from 'ionic-angular';
+import { NavController, ModalController } from 'ionic-angular';
 import moment from 'moment';
 
 @Component({
@@ -16,8 +16,16 @@ export class HomePage {
   in15Hours = this.inXHours(15, false);
   inHalfHour = this.inXHours(.5);
 
-  constructor(public navCtrl: NavController) {
+  constructor(public navCtrl: NavController, public modalCtrl: ModalController) {
 
+  }
+
+  presentNewActivityModal() {
+    let newActivityModal = this.modalCtrl.create('NewActivityPage');
+    newActivityModal.onDidDismiss(data => {
+      console.log(data);
+    });
+    newActivityModal.present();
   }
 
   nearest15Minutes(){
