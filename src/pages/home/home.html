@@ -7,28 +7,33 @@
     </ion-navbar>
 </ion-header>
 <ion-content padding>
+
     <ion-card class="background-image-card">
         <ion-card-header>
-            {{now15}}
+            {{lastActivity.start}}
         </ion-card-header>
         <img src="assets/images/onepunchman.png" />
         <div class="card-title">Manga</div>
         <div class="card-subtitle">Fun</div>
         <ion-card-header>
-            {{in7Hours}}
+            {{lastActivity.end}}
         </ion-card-header>
     </ion-card>
+
     <ion-card class="background-image-card">
         <ion-card-header>
-            {{in7Hours}}
+            {{nextActivity.start}}
         </ion-card-header>
         <img src="assets/images/league.jpg" />
         <div class="card-title">League</div>
         <div class="card-subtitle">Fun</div>
         <ion-card-header>
-            {{in9Hours}}
+        	<button ion-button icon-only full small clear (click)="presentNewActivityModal()">
+        	<ion-icon name="add"></ion-icon>
+        	</button>
         </ion-card-header>
     </ion-card>
+
     <ion-card>
         <ion-card-header text-center>
             {{in9Hours}}
@@ -46,15 +51,16 @@
         <ion-card-header text-center>
             {{in15Hours}}
         </ion-card-header>
-    </ion-card>
+    </ion-card><!-- 
     <ion-fab right bottom>
-        <button ion-fab mini>
+        <button ion-fab mini (click)="presentNewActivityModal()">
             <ion-icon name="add"></ion-icon>
-        </button>
-        <ion-fab-list side="top">
+        </button> -->
+        <!-- perhaps after fab closes after clicking a list item -->
+        <!-- <ion-fab-list side="top">
             <button ion-fab (click)="presentNewActivityModal()">
                 <ion-icon name="calendar"></ion-icon>
             </button>
-        </ion-fab-list>
-    </ion-fab>
+        </ion-fab-list> -->
+    <!-- </ion-fab> -->
 </ion-content>

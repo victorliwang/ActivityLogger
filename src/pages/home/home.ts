@@ -15,6 +15,14 @@ export class HomePage {
   in9Hours = this.inXHours(8);
   in15Hours = this.inXHours(15, false);
   inHalfHour = this.inXHours(.5);
+  lastActivity = {
+    start: this.inXHours(-1),
+    end: this.inXHours(0)
+  };
+
+  nextActivity = {
+    start: this.lastActivity.end
+  }
 
   constructor(public navCtrl: NavController, public modalCtrl: ModalController) {
 

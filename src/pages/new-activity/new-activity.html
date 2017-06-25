@@ -1,0 +1,52 @@
+<ion-header>
+    <ion-navbar>
+        <ion-buttons left>
+            <button ion-button icon-only (click)="viewCtrl.dismiss()" class="modal-back">
+                <ion-icon name="arrow-back"></ion-icon>
+            </button>
+        </ion-buttons>
+        <ion-title>New Activity</ion-title>
+        <ion-buttons right>
+            <button ion-button icon-only (click)="saveActivity()" [disabled]="!activity.valid">
+                <ion-icon name="bookmark"></ion-icon>
+            </button>
+        </ion-buttons>
+    </ion-navbar>
+</ion-header>
+<ion-content padding>
+    <!-- <ion-list> -->
+    <form [formGroup]="activity" (ngSubmit)="logForm()">
+        <ion-card>
+            <ion-item>
+                <ion-label stacked>Title</ion-label>
+                <ion-input type="text" formControlName="title"></ion-input>
+            </ion-item>
+            <ion-item *ngIf="!activity.controls.title.valid  && (activity.controls.title.dirty)">
+                <p>Please enter a valid title.</p>
+            </ion-item>
+        </ion-card>
+        <ion-card>
+            <ion-item>
+                <ion-label stacked>Category</ion-label>
+                <ion-input formControlName="category" clearInput></ion-input>
+            </ion-item>
+            <ion-item *ngIf="!activity.controls.category.valid  && (activity.controls.category.dirty)">
+                <p>Please enter a valid category.</p>
+            </ion-item>
+        </ion-card>
+        <ion-card>
+            <ion-item>
+                <ion-label stacked>Start Time</ion-label>
+                <ion-datetime displayFormat="H:mm" pickerFormat="H mm" formControlName="start"></ion-datetime>
+            </ion-item>
+        </ion-card>
+        <ion-card>
+            <ion-item>
+                <ion-label stacked>End Time</ion-label>
+                <ion-datetime displayFormat="H:mm" pickerFormat="H mm" formControlName="end"></ion-datetime>
+            </ion-item>
+        </ion-card>
+    </form>
+    <!-- </ion-list> -->
+    <!-- </ion-card> -->
+</ion-content>
