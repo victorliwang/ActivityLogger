@@ -6,61 +6,28 @@
         <ion-title>Activity Logger</ion-title>
     </ion-navbar>
 </ion-header>
-<ion-content padding>
-
-    <ion-card class="background-image-card">
-        <ion-card-header>
-            {{lastActivity.start}}
-        </ion-card-header>
-        <img src="assets/images/onepunchman.png" />
-        <div class="card-title">Manga</div>
-        <div class="card-subtitle">Fun</div>
-        <ion-card-header>
-            {{lastActivity.end}}
-        </ion-card-header>
-    </ion-card>
-
-    <ion-card class="background-image-card">
-        <ion-card-header>
-            {{nextActivity.start}}
-        </ion-card-header>
-        <img src="assets/images/league.jpg" />
-        <div class="card-title">League</div>
-        <div class="card-subtitle">Fun</div>
-        <ion-card-header>
-        	<button ion-button icon-only full small clear (click)="presentNewActivityModal()">
-        	<ion-icon name="add"></ion-icon>
-        	</button>
-        </ion-card-header>
-    </ion-card>
-
-    <ion-card>
-        <ion-card-header text-center>
-            {{in9Hours}}
-        </ion-card-header>
-        <img src="assets/images/zzz.png" />
-        <ion-card-content>
-            <ion-card-title>
-                Sleep
-                <ion-note>
-                    Health
-                </ion-note>
-            </ion-card-title>
-            <p>My beauty sleep time ofc.</p>
-        </ion-card-content>
-        <ion-card-header text-center>
-            {{in15Hours}}
-        </ion-card-header>
-    </ion-card><!-- 
-    <ion-fab right bottom>
-        <button ion-fab mini (click)="presentNewActivityModal()">
-            <ion-icon name="add"></ion-icon>
-        </button> -->
-        <!-- perhaps after fab closes after clicking a list item -->
-        <!-- <ion-fab-list side="top">
-            <button ion-fab (click)="presentNewActivityModal()">
-                <ion-icon name="calendar"></ion-icon>
-            </button>
-        </ion-fab-list> -->
-    <!-- </ion-fab> -->
+<ion-content>
+    <ion-grid>
+        <ion-row>
+            {{currentDate}}
+        </ion-row>
+        <ion-row>
+            <ion-col col-auto>
+                <ion-row *ngFor="let hour of hours">
+                    <ion-col>
+                        {{hour}}
+                    </ion-col>
+                </ion-row>
+            </ion-col>
+            <ion-col>
+                <ion-row *ngFor="let one of [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23]">
+                    <ion-card class="background-image-card">
+                        <img class="card-img" src="assets/images/onepunchman.png" />
+                        <div class="card-title">Manga</div>
+                        <div class="card-subtitle">Fun</div>
+                    </ion-card>
+                </ion-row>
+            </ion-col>
+        </ion-row>
+    </ion-grid>
 </ion-content>
